@@ -19,7 +19,8 @@ https://qiujiangkun.github.io/
     <li>TODO:</li>
     <li>持久化存储游戏记录，加入排行榜系统，加入高级成就系统</li>
 </ui>
-<br/>
+<br />
+
 以下是ben7th的开发记录
 2014.02.16 - 0.0.3
 <ui>
@@ -27,10 +28,10 @@ https://qiujiangkun.github.io/
     <li>略微加快了鸟翅膀上下扇动的速度(0.4s to 0.3s)</li>
     <li>略微扩大了管子开口随机的范围(上下各增加了10像素)</li>
 </ui>
-<br/>
+<br />
 
 2014.02.17 - 0.0.4
 <ui>
     <li>调整了一些场景数值</li>
 </ui>
-<br/>
+<br />
