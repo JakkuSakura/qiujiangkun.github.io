@@ -1,6 +1,6 @@
 body .ct-p1 {
   position: absolute;
-  width: 280px;
+  width: 300px;
   top: 100px;
   left: 50%;
   margin-left: -502px; }
@@ -16,5 +16,9 @@ body .ct-p1 {
     font-weight: bold; }
   body .ct-p1 .stat .lines {
     margin-left: 24px; }
-  body .ct-p1 .bshare a {
-    border: 0 none; }
+  body .record {
+    position: absolute;
+    width: 163px;
+    top: 312px;
+    left: 46%;
+  }

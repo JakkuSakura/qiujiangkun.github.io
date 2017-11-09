@@ -2,8 +2,9 @@ body {
   .ct-p1 {
     // background-color:white;
     position:absolute;
-    width:280px;
-    top:100px;left:50%;
+    width:300px;
+    top:100px;
+    left:50%;
     margin-left: - 280px - 384px / 2 - 30px;
     // text-align:right;
 
@@ -27,8 +28,11 @@ body {
       }
     }
 
-    .bshare {
-      a {border:0 none;}
-    }
+  }
+  .record {
+    position: absolute;
+    width: 163px;
+    top: 312px;
+    left: 46%;
   }
 }

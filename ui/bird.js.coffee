@@ -26,19 +26,18 @@ jQuery.fn.shake = (intShakes, intDistance, intDuration) ->
 
 class Runner
   constructor: ->
-    @FPS = 30 # frame / s
-    @BOOST_UP = 5.0
+    @FPS = 60 # frame / s
+    @BOOST_UP = 1.0
     @set_speed()
+    @roles = []
+  set_speed: ->
+    @FRAME_TIME = 1000 / @BOOST_UP / @FPS # ms / fps
     @GROUND_SPEED_PER_SEC = 190
     @GROUND_SPEED = @GROUND_SPEED_PER_SEC / @FPS # px/frame_time
     @GRAVITY_PER_SEC = 35
     @GRAVITY = @GRAVITY_PER_SEC / (@FPS * @FPS / 60) # px/frame_time^2
     @BIRD_JUMP_SPEED_PER_SEC = 510
     @BIRD_JUMP_SPEED = @BIRD_JUMP_SPEED_PER_SEC / @FPS # px/frame_time
-
-    @roles = []
-  set_speed: ->
-    @FRAME_TIME = 1000 / @BOOST_UP / @FPS # ms / fps
   add: (role)->
     @roles.push role
     role.runner = @
@@ -53,7 +52,7 @@ class Runner
           role.draw()
         start_time = new_time
     , 1
-window.AI_ON = 1
+window.AI_ON = 0
 class AI
   constructor: ->
     return unless window.AI_ON
@@ -74,7 +73,6 @@ class AI
       if t >= 0
         if @bird.speed > 0
           fnly = @bird.top + bird_height
-          min = fnly
           spd = @bird.speed
           g = @bird.gravity
           for i in [1..t]
@@ -184,7 +182,7 @@ class Bird
       if Math.abs(bird_mx - pipe_mx) <= W
         if @top < p.data('y0') || @top + bird_height > p.data('y1')
           @state_dead()
-          console.log "hit the pipe y1:#{p.data('y1')} y0:#{p.data('y0')} bt #{@top} bb#{@top - bird_height}"
+          console.log "Hit the pipe y1:#{p.data('y1')} y0:#{p.data('y0')} bt #{@top} bb #{@top - bird_height}"
   state_suspend: ->
     # 悬浮
     @$elm.removeClass('no-suspend').removeClass('down').removeClass('up')
@@ -324,17 +322,19 @@ class Pipes
       .data 'y1', y1
 
     
-    $top = jQuery('<div></div>')
-      .addClass 'top'
-      .appendTo $pipe
-      .css
-        height: y0
+#    $top =
+    jQuery('<div></div>')
+    .addClass 'top'
+    .appendTo $pipe
+    .css
+      height: y0
 
-    $bottom = jQuery('<div></div>')
-      .addClass 'bottom'
-      .appendTo $pipe
-      .css
-        top:y1
+#    $bottom =
+     jQuery('<div></div>')
+     .addClass 'bottom'
+     .appendTo $pipe
+     .css
+       top:y1
 
     @pipes.push $pipe
 
@@ -459,7 +459,7 @@ class Game
     jQuery(document).on 'pipe:created', (evt, $pipe)=>
       @stage.$elm.append($pipe)
 
-    jQuery(document).on 'score:add', (evt, $pipe)=>
+    jQuery(document).on 'score:add', =>
       @score.inc()
       @runner.FRAME_TIME *= 0.80 if @score.score % 20 == 0
 
