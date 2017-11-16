@@ -1,6 +1,6 @@
 root = global ? window
 
-url ='https://qjk.s500.xrea.com/data/query.php'
+url ='http://qjk.s500.xrea.com/data/query.php'
 #url = 'data/query.php'
 root.post = (URL, PARAMS) =>
   console.log(PARAMS)
