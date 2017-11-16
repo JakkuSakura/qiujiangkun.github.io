@@ -12,7 +12,7 @@ header("Access-Control-Allow-Origin: *");
 $query = $_POST['query'];
 //echo $query;
 
-$con = mysqli_connect('localhost:3306', 'root', '', 'qjk_bird');
+$con = mysqli_connect('localhost:3306', 'qjk_bird', 'bird1234', 'qjk_bird');
 
 if (mysqli_connect_errno($con)) {
     die( $callback."([" . "Debugging errno: " . mysqli_connect_error() . "])");
