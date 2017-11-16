@@ -55,12 +55,12 @@ class Runner
 window.AI_ON = 0
 class AI
   constructor: ->
-    return unless window.AI_ON
     @pipes = window.game.pipes.pipes
     @bird = window.game.bird
-    console.log "AI Enabled"
+    console.log "AI Enabled" if window.AI_ON
     window.game.runner.add @
   draw: ->
+    return unless window.AI_ON
     if @bird.is_dead
       return
     if @pipes.length > 0
@@ -291,7 +291,9 @@ class ScoreBoard
         .addClass('number')
         .addClass("n#{num}")
       @$max_score.append $n
-
+    unless window.AI_ON
+      window.nknm = prompt "请输入你的昵称:", "Player" unless window.nknm
+      window.sendScore(window.nknm, score, window.game.runner.FPS, window.game.runner.BOOST_UP)
 class Pipes
   constructor: ->
     @xgap = 140 + pipes_width # 左右管子间距，140 还要加上管子宽度 69

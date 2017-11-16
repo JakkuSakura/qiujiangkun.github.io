@@ -22,3 +22,9 @@ body .ct-p1 {
     top: 312px;
     left: 46%;
   }
+  body .top10 {
+    position: absolute;
+    width: auto;
+    top: 99px;
+    left: 70%;
+}
