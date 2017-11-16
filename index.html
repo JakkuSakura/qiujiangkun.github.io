@@ -1,44 +1,45 @@
 <html lang='zh'>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Flappy Bird 1.0</title>
-    <link href="ui/bird.css" media="screen" rel="stylesheet" type="text/css" />
-    <link href="ui/document.css" media="screen" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css" />
-    <link rel="stylesheet" href="http://www.runoob.com/try/demo_source/jqueryui/style.css" />
-    <script src="http://api.apowersoft.cn/screen-recorder?lang=zh" defer></script>
-    <script type="text/javascript" src="ui/lib/jquery-2.1.0.min.js"></script>
-    <script type="text/javascript" src="ui/lib/coffee-script.js"></script>
-    <script type="text/coffeescript" src="ui/bird.js.coffee"></script>
-    <script type="text/javascript" src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <script type="text/coffeescript" src="data/func.coffee"></script>
-    <script>
-        $(function() {
-            $( "#aibutm" )
-                .button()
-                .click(function() {
-                    window.AI_ON = !window.AI_ON;
-                    $( "#ailabel" ).html('<span class="ui-button-text">' + (window.AI_ON ? "关闭AI" : "开启AI") + '</span>')
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>Flappy Bird 1.0</title>
+      <link href="ui/bird.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="ui/document.css" media="screen" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css" />
+      <link rel="stylesheet" href="http://www.runoob.com/try/demo_source/jqueryui/style.css" />
+      <script src="http://api.apowersoft.cn/screen-recorder?lang=zh" defer></script>
+      <script type="text/javascript" src="ui/lib/jquery-2.1.0.min.js"></script>
+      <script type="text/javascript" src="ui/lib/coffee-script.js"></script>
+      <script type="text/coffeescript" src="ui/bird.js.coffee"></script>
+      <script type="text/javascript" src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+      <script type="text/coffeescript" src="data/func.coffee"></script>
+      <script>
+      $(function() {
+          $( "#aibutm" )
+              .button()
+              .click(function() {
+                  window.AI_ON = !window.AI_ON;
+                  $( "#ailabel" ).html('<span class="ui-button-text">' + (window.AI_ON ? "关闭AI" : "开启AI") + '</span>')
 
-            });
-            $( "#fpsbutm" )
-                .button()
-                .click(function () {
-                    window.game.runner.FPS = parseFloat($( "#fpstext" ).val());
-                    window.game.runner.set_speed();
-            });
-            $( "#speedbutm" )
-                .button()
-                .click(function () {
-                    window.game.runner.BOOST_UP = parseFloat($( "#speedtext" ).val());
-                    window.game.runner.set_speed();
-            });
-            $( "#topbutton" )
-                .button()
-                .click(function () {
-                    window.getHighScore();
-                });
-        });
+          });
+          $( "#fpsbutm" )
+              .button()
+              .click(function () {
+                  window.game.runner.FPS = parseFloat($( "#fpstext" ).val());
+                  window.game.runner.set_speed();
+          });
+          $( "#speedbutm" )
+              .button()
+              .click(function () {
+                  window.game.runner.BOOST_UP = parseFloat($( "#speedtext" ).val());
+                  window.game.runner.set_speed();
+          });
+          $( "#topbutton" )
+              .button()
+              .click(function () {
+                  window.getHighScore();
+              });
+      });
     </script>
     <script src = "http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script>
