@@ -9,13 +9,16 @@ header("Access-Control-Allow-Origin: *");
 //phpinfo();
 
 //print_r($_POST);
-$query = $_POST['query'];
+$query = $_POST['query'] or $query = $_GET['query'];
 //echo $query;
+
+
+$callback = $_GET['callback'] or $callback = $_GET['callback'];
 
 $con = mysqli_connect('localhost:3306', 'qjk_bird', 'bird1234', 'qjk_bird');
 
 if (mysqli_connect_errno($con)) {
-    die( $callback."([" . "Debugging errno: " . mysqli_connect_error() . "])");
+    die( $callback."([\"" . "Debugging errno: " . mysqli_connect_error() . "\"])");
 }
 
 
@@ -23,14 +26,13 @@ if (mysqli_connect_errno($con)) {
 //echo "Host information: " . mysqli_get_host_info($con) . PHP_EOL . "<br />";
 
 //执行该查询
-$result = mysqli_query($con, $query) or die( $callback."([" . "Error in query: $query. " . mysqli_error($con) . "])");
+$result = mysqli_query($con, $query) or die( $callback."([\"" . "Error in query: $query. " . mysqli_error($con) . "\"])");
 //插入操作成功后，显示插入记录的记录号
 //echo "记录已经插入， mysql_insert_id() = ". mysqli_insert_id($con) . "<br />";
 
 //关闭当前数据库连接
 $con->close();
 
-$callback=$_GET['callback'];
 
 if (!is_bool($result))
 {

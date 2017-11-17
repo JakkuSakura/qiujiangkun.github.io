@@ -294,6 +294,8 @@ class ScoreBoard
     unless window.AI_ON
       window.nknm = prompt "请输入你的昵称:", "Player" unless window.nknm
       window.sendScore(window.nknm, score, window.game.runner.FPS, window.game.runner.BOOST_UP)
+      setInterval "window.getHighScore()",1000
+
 class Pipes
   constructor: ->
     @xgap = 140 + pipes_width # 左右管子间距，140 还要加上管子宽度 69

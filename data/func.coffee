@@ -20,7 +20,7 @@ root.post = (URL, PARAMS) =>
 
 root.sendScore = (username, score, fps, speed) =>
   query = """INSERT INTO bird (id, username, score, fps, speed, ip)\
- VALUE(NULL, '#{username}', '#{score}', '#{fps}', '#{speed}'\
+ VALUE(NULL, '#{encodeURI username}', '#{score}', '#{fps}', '#{speed}'\
 , inet_aton('#{returnCitySN['cip']}'))"""
   $.ajax({
     url: url,
@@ -43,16 +43,37 @@ root.getHighScore = =>
     success: (res) =>
       console.log res
       show = "<table border=\"1\"><caption>排行榜</caption><tr><td>rusername</td><td>score</td><td>fps</td><td>speed</td><td>date</td></tr>"
-#      lbl = ["id", "username", "score", "fps", "speed", "date", "ip"]
+      #      lbl = ["id", "username", "score", "fps", "speed", "date", "ip"]
       for ele,j in res
         show += "<tr>"
         for el, i in ele
-          show += "<td>" + el + "</td>" if 1 <= i <= 5
+          show += "<td>" + decodeURI el + "</td>" if 1 <= i <= 5
         show += '</tr>'
       show += "</table>"
 
       $( "#topscoretext" ).html(show)
-  })
+    })
 #  root.post(url, {
 #    query : query})
-#  username = prompt("请输入你的昵称:", "")
+root.setMaxScore = (username, score) =>
+  query = "UPDATE IGNORE highscore SET score=#{score} WHERE username=\"#{encodeURI username}\" and score < #{score}"
+  $.ajax({
+    url: url
+    data: {query : query}
+    type: "POST"
+    dataType: 'JSONP'
+    success: (res) =>
+      console.log res
+  })
+root.getMaxScore = (username) =>
+  query = "select * from highscore where username=\"#{encodeURI username}\""
+  $.ajax({
+    url: url
+    data: {query : query}
+    type: "POST"
+    dataType: 'JSONP'
+    success: (res) =>
+      console.log res
+      console.log res[1]
+      localStorage.max_score = max res[1], localStorage.max_score
+  })
